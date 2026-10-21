@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VELA SWEET | Tortas, cupcakes y postres por WhatsApp</title>
+  <meta name="description" content="Tortas, cupcakes, donas, galletas y postres hechos con amor por dos reposteras. Arma tu pedido y envíalo por WhatsApp.">
+  <meta name="theme-color" content="#fff1ee">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%81%3C/text%3E%3C/svg%3E">
+
+  <!-- Letras de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Aquí se conecta el archivo de estilos -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =====================================================
+       1. CABECERA: logo y botón "Mi pedido"
+       ===================================================== -->
+  <header>
+    <div class="wrap">
+      <a class="logo" href="#inicio" aria-label="VELA SWEET, ir al inicio">
+        <svg viewBox="0 0 30 38" aria-hidden="true"><path d="M15 2 C10 9 11 13 15 14 C19 13 20 9 15 2Z" fill="#ff9f1c" stroke="#3a1825" stroke-width="2"/><rect x="11" y="14" width="8" height="18" rx="2" fill="#ffc9d6" stroke="#3a1825" stroke-width="2"/><path d="M5 33 H25 V35 H5Z" fill="#d81b46" stroke="#3a1825" stroke-width="2"/></svg>
+        VELA SWEET
+      </a>
+      <button class="btn" id="cartbtn" data-accion="abrir" aria-label="Abrir mi pedido">🛍️ <span class="txt">Mi pedido</span> <span id="count">0</span></button>
+    </div>
+  </header>
+
+  <main id="inicio">
+
+    <!-- =====================================================
+         2. PORTADA: título y decoraciones
+         ===================================================== -->
+    <section class="wrap hero">
+
+      <!-- ESPACIOS PARA IMÁGENES DECORATIVAS (PNG sin fondo):
+           guarda tus imágenes con estos nombres, junto a este archivo -->
+      <div class="deco" aria-hidden="true">
+        <img class="d1" src="deco1.png" alt="">
+        <img class="d2" src="deco2.png" alt="">
+        <img class="d3" src="deco3.png" alt="">
+        <img class="d4" src="deco4.png" alt="">
+        <img class="d5" src="deco5.png" alt="">
+        <img class="d6" src="deco6.png" alt="">
+      </div>
+
+      <div>
+        <h1>Vela Sweet</h1>
+        <div class="acciones">
+          <a class="btn" href="#menu">Ver los productos que se ofrece</a>
+          <a class="btn claro" href="#contacto">consultar con las chicas</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cinta que se mueve (el JavaScript escribe las palabras aquí) -->
+    <div class="cinta" aria-hidden="true">
+      <div class="pista-cinta" id="cinta"></div>
+    </div>
+
+
+    <!-- =====================================================
+         3. MENÚ DE PRODUCTOS
+         Las tarjetas de productos las crea el JavaScript
+         (los productos están en script.js)
+         ===================================================== -->
+    <section class="wrap menu" id="menu">
+      <div class="menu-cab">
+        <div>
+          <h2>Elige tu antojo</h2>
+          <p>Toca Agregar para armar tu pedido. Lo revisas y lo envías por WhatsApp.</p>
+        </div>
+        <label class="buscar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3a1825" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20 l-4 -4"/></svg>
+          <input id="q" type="search" placeholder="Busca una torta, dona, flan…" aria-label="Buscar dulces" autocomplete="off">
+        </label>
+      </div>
+
+      <div class="chips" id="chips" role="group" aria-label="Categorías"></div>
+      <div class="grid" id="grid" aria-live="polite"></div>
+    </section>
+
+
+    <!-- =====================================================
+         4. CÓMO PEDIR
+         ===================================================== -->
+    <section class="como">
+      <div class="wrap">
+        <h2>Pedir es muy fácil</h2>
+        <ol class="pasos">
+          <li><div class="num">1</div><h3>Elige tus dulces</h3><p>Recorre el menú y toca Agregar. Puedes sumar todas las unidades que quieras.</p></li>
+          <li><div class="num">2</div><h3>Revisa tu pedido</h3><p>Abre Mi pedido, elige recojo o entrega y deja una nota con la fecha o una dedicatoria.</p></li>
+          <li><div class="num">3</div><h3>Envíalo por WhatsApp</h3><p>Te llega todo armado en un solo mensaje y las chicas te confirman.</p></li>
+        </ol>
+        <div class="ventajas">
+          <span>🎀 Pedido fácil</span>
+          <span>📲 Directo a WhatsApp</span>
+          <span>🚚 Entregas a domicilio</span>
+          <span>💖 Hecho con amor</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         5. CONTACTO: las dos reposteras
+         ===================================================== -->
+    <section class="contacto" id="contacto">
+
+      <!-- ESPACIOS PARA IMÁGENES DECORATIVAS: deco7.png y deco8.png -->
+      <div class="deco2" aria-hidden="true">
+        <img class="e1" src="deco7.png" alt="">
+        <img class="e2" src="deco8.png" alt="">
+      </div>
+
+      <div class="wrap">
+        <h2>Escríbele a las chicas</h2>
+        <p>¿Una torta grande o una fecha especial? Escríbenos con tiempo y lo preparamos a tu gusto.</p>
+
+        <div class="chicas">
+
+          <!-- Repostera 1 -->
+          <div class="chica">
+            <!-- ESPACIO PARA FOTO: guarda su foto como foto32.jpg -->
+            <div class="foto-chica">
+              <span>📷</span>
+              <img src="foto32.jpg" alt="Repostera de VELA SWEET" onerror="this.style.display='none'">
+            </div>
+            <div>
+              <b>63361867</b>
+              <a class="btn wa mini" href="https://wa.me/59163361867?text=%C2%A1Hola!%20Quisiera%20consultar%20por%20un%20pedido%20de%20VELA%20SWEET%20%F0%9F%92%96" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+            </div>
+          </div>
+
+          <!-- Repostera 2 -->
+          <div class="chica">
+            <!-- ESPACIO PARA FOTO: guarda su foto como foto33.jpg -->
+            <div class="foto-chica">
+              <span>📷</span>
+              <img src="foto33.jpg" alt="Repostera de VELA SWEET" onerror="this.style.display='none'">
+            </div>
+            <div>
+              <b>67987848</b>
+              <a class="btn wa mini" href="https://wa.me/59167987848?text=%C2%A1Hola!%20Quisiera%20consultar%20por%20un%20pedido%20de%20VELA%20SWEET%20%F0%9F%92%96" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- =====================================================
+       6. PIE DE PÁGINA
+       ===================================================== -->
+  <footer>
+    <b>VELA SWEET</b>
+    Pedidos por WhatsApp: 63361867 y 67987848
+  </footer>
+
+
+  <!-- =====================================================
+       7. PEDIDO: barra inferior y panel lateral
+       ===================================================== -->
+
+  <!-- Barra inferior "Ver mi pedido" -->
+  <button class="btn barra" id="barra" data-accion="abrir">
+    <span>Ver mi pedido <span id="barraN"></span></span>
+    <span id="barraT"></span>
+  </button>
+
+  <!-- Capa oscura detrás del panel (al tocarla se cierra) -->
+  <div class="velo" id="velo" data-accion="cerrar"></div>
+
+  <!-- Panel "Tu pedido" -->
+  <aside class="cajon" id="cajon" aria-label="Mi pedido">
+    <div class="cajon-cab">
+      <span>🛍️ Tu pedido</span>
+      <button data-accion="cerrar" aria-label="Cerrar">×</button>
+    </div>
+
+    <!-- Aquí el JavaScript pone los productos elegidos -->
+    <div class="items" id="items"></div>
+
+    <!-- Datos del cliente -->
+    <div class="datos">
+      <div class="dos">
+        <input id="nombre" placeholder="Tu nombre" autocomplete="name">
+        <select id="entrega" aria-label="Recojo o entrega">
+          <option>Recojo</option>
+          <option>Entrega a domicilio</option>
+        </select>
+      </div>
+      <textarea id="nota" placeholder="Nota: fecha, dedicatoria, dirección"></textarea>
+      <select id="num" aria-label="Número de WhatsApp">
+        <option value="59163361867">Enviar a WhatsApp 63361867</option>
+        <option value="59167987848">Enviar a WhatsApp 67987848</option>
+      </select>
+      <div class="total"><span>Total</span><span id="total">Bs. 0</span></div>
+      <button class="btn wa" data-accion="enviar">📲 Pedir por WhatsApp</button>
+      <button class="vaciar" data-accion="vaciar">Vaciar pedido</button>
+    </div>
+  </aside>
+
+  <!-- Aviso corto -->
+  <div class="toast" id="toast" role="status"></div>
+
+  <!-- Aquí se conecta el archivo de JavaScript (siempre al final) -->
+  <script src="script.js"></script>
+</body>
+</html>

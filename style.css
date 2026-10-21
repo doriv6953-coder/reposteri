@@ -1,0 +1,547 @@
+/* =========================================================
+   VELA SWEET - estilos de la página (style.css)
+   Aquí está todo el diseño: colores, letras, tamaños y formas.
+   Está ordenado en secciones, en el mismo orden que la página.
+   ========================================================= */
+
+
+/* ---------- 1. COLORES Y TIPOS DE LETRA ----------
+   Para cambiar un color de toda la página, se cambia aquí una sola vez. */
+:root{
+  --leche:#fff1ee;      /* fondo claro */
+  --ink:#3a1825;        /* color oscuro (textos y bordes) */
+  --fram:#d81b46;       /* rojo frambuesa (botones) */
+  --rosa:#ffc9d6;       /* rosa suave */
+  --mant:#ffd86b;       /* amarillo mantequilla */
+  --pist:#cfe8c2;       /* verde pistacho */
+  --durazno:#ffb38a;    /* durazno */
+
+  --display:'Bagel Fat One','Arial Rounded MT Bold','Trebuchet MS',sans-serif; /* letra de títulos */
+  --texto:'Nunito','Segoe UI',system-ui,sans-serif;                           /* letra de textos */
+
+  --hh:68px;                        /* altura de la cabecera */
+  --sec:clamp(52px,7vw,92px);       /* espacio arriba y abajo de cada sección */
+}
+
+
+/* ---------- 2. BASE (reglas generales) ---------- */
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hh) + 60px)}
+
+body{
+  font-family:var(--texto);
+  font-size:1rem;
+  line-height:1.6;
+  background:var(--ink);
+  color:var(--ink);
+}
+
+/* Foto de fondo de toda la página (archivo foto.jpg) con una capa oscura encima */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(rgba(58,24,37,.55),rgba(58,24,37,.55)),url("foto.jpg") center/cover no-repeat;
+}
+
+img{display:block;max-width:100%}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:8px}
+
+.wrap{max-width:1200px;margin-inline:auto;padding-inline:5%}
+
+h1,h2{font-family:var(--display);font-weight:400;line-height:1.05;letter-spacing:.01em}
+h2{font-size:clamp(2rem,4.6vw,3rem)}
+
+
+/* ---------- 3. BOTONES ---------- */
+.btn{
+  font-weight:800;
+  font-size:1rem;
+  cursor:pointer;
+  border:2.5px solid var(--ink);
+  border-radius:99px;
+  padding:12px 26px;
+  background:var(--fram);
+  color:#fff;
+  box-shadow:0 4px 0 var(--ink);
+  transition:transform .12s,box-shadow .12s;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--ink)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+.btn.claro{background:#fff;color:var(--ink)}
+.btn.wa{background:#25d366;color:#0b3d1e}   /* verde de WhatsApp */
+.btn.mini{padding:8px 20px}
+
+
+/* ---------- 4. CABECERA (logo y botón "Mi pedido") ---------- */
+header{
+  position:sticky;
+  top:0;
+  z-index:60;
+  height:var(--hh);
+  background:rgba(255,241,238,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:2.5px solid var(--ink);
+}
+header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:12px}
+
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:1.7rem;line-height:1;color:var(--ink);text-decoration:none}
+.logo svg{width:30px;height:38px;flex:none}
+
+#cartbtn{padding:9px 18px}
+
+/* Circulito con el número de productos */
+#count{
+  background:#fff;
+  color:var(--fram);
+  border:2px solid var(--ink);
+  border-radius:99px;
+  min-width:26px;
+  height:26px;
+  padding:0 6px;
+  display:inline-grid;
+  place-items:center;
+  font-size:.85rem;
+  font-weight:800;
+}
+#count.bump{animation:rebote .45s}
+@keyframes rebote{30%{transform:scale(1.5)}60%{transform:scale(.9)}}
+
+
+/* ---------- 5. PORTADA (título grande y decoraciones) ---------- */
+.hero{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  min-height:min(72vh,560px);
+  padding-block:48px;
+}
+.hero > div:not(.deco){position:relative;z-index:1}   /* el texto queda encima de las decoraciones */
+
+.hero h1{
+  font-family:'Pacifico','Brush Script MT',cursive;
+  font-size:clamp(3.2rem,11.5vw,7.4rem);
+  line-height:1.2;
+  color:#fff;
+  text-shadow:0 4px 0 var(--fram),0 10px 26px rgba(0,0,0,.55);
+  margin-bottom:30px;
+  animation:entra-titulo 1s cubic-bezier(.3,1.5,.5,1) both;
+}
+@keyframes entra-titulo{
+  from{opacity:0;transform:translateY(-40px) scale(.6)}
+  to{opacity:1;transform:none}
+}
+
+.acciones{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+
+/* Imágenes decorativas flotantes de la portada (deco1.png ... deco6.png) */
+.deco{position:absolute;inset:0;pointer-events:none;z-index:0}
+.deco img{
+  position:absolute;
+  width:var(--w);
+  height:auto;
+  transform:rotate(var(--r));
+  filter:drop-shadow(0 12px 14px rgba(0,0,0,.5));
+  animation:flota 6s ease-in-out infinite;
+  animation-delay:var(--dl,0s);
+}
+/* --w = tamaño, --r = giro, --dl = retraso de la animación */
+.d1{top:3%;left:2%;--w:clamp(80px,12vw,165px);--r:-14deg}
+.d2{bottom:5%;left:8%;--w:clamp(70px,9.5vw,125px);--r:9deg;--dl:-2s}
+.d3{top:42%;left:-1%;--w:clamp(70px,9vw,120px);--r:-6deg;--dl:-4s}
+.d4{top:2%;right:3%;--w:clamp(85px,12.5vw,170px);--r:10deg;--dl:-1s}
+.d5{bottom:4%;right:4%;--w:clamp(90px,13vw,180px);--r:-9deg;--dl:-3s}
+.d6{top:42%;right:-1%;--w:clamp(70px,9vw,125px);--r:7deg;--dl:-5s}
+
+@keyframes flota{
+  0%,100%{transform:translateY(0) rotate(var(--r))}
+  50%{transform:translateY(-14px) rotate(calc(var(--r) + 4deg))}
+}
+
+
+/* ---------- 6. CINTA QUE SE MUEVE ---------- */
+.cinta{background:var(--fram);color:#fff;border-block:2.5px solid var(--ink);overflow:hidden;white-space:nowrap}
+.pista-cinta{display:inline-flex;animation:cinta 32s linear infinite}
+.cinta span{font-family:var(--display);font-size:1.3rem;padding:10px 0 10px 28px;display:inline-flex;align-items:center;gap:28px}
+.cinta span::after{content:"";width:12px;height:12px;background:var(--mant);border:2px solid var(--ink);transform:rotate(45deg)}
+@keyframes cinta{to{transform:translateX(-50%)}}
+
+
+/* ---------- 7. MENÚ DE PRODUCTOS ---------- */
+.menu{padding-block:var(--sec) 24px}
+
+/* Título + buscador */
+.menu-cab{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:20px}
+.menu-cab h2,.menu-cab p{color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.menu-cab p{max-width:26em}
+
+.buscar{position:relative;flex:1 1 260px;max-width:360px}
+.buscar svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:20px;height:20px}
+.buscar input{
+  width:100%;
+  font:inherit;
+  font-weight:600;
+  padding:12px 18px 12px 46px;
+  border:2.5px solid var(--ink);
+  border-radius:99px;
+  background:#fff;
+  color:var(--ink);
+}
+.buscar input::placeholder{color:#7d5a68}
+
+/* Botones de categorías (Todos, Tortas, Cupcakes...) */
+.chips{
+  position:sticky;
+  top:var(--hh);
+  z-index:40;
+  background:var(--leche);
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding:12px 5%;
+  margin-inline:-5%;
+  scrollbar-width:none;
+}
+.chips::-webkit-scrollbar{display:none}
+.chip{
+  flex:none;
+  font-weight:800;
+  font-size:.95rem;
+  cursor:pointer;
+  border:2.5px solid var(--ink);
+  border-radius:99px;
+  padding:7px 16px;
+  background:#fff;
+  color:var(--ink);
+}
+.chip small{font-weight:700;opacity:.65;margin-left:4px}
+.chip[aria-pressed=true]{background:var(--ink);color:#fff}   /* categoría elegida */
+
+/* Cuadrícula de tarjetas */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:26px;padding:22px 0 40px}
+
+.card{
+  background:#fff;
+  border:2.5px solid var(--ink);
+  border-radius:28px;
+  box-shadow:0 6px 0 var(--ink);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  transition:transform .2s,box-shadow .2s;
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 0 var(--ink)}
+
+/* ESPACIO DE LA FOTO DEL PRODUCTO:
+   - Si la foto existe, se ve encima.
+   - Si todavía no la pones, se ve este cuadro rosa con el nombre del archivo. */
+.foto{
+  position:relative;
+  aspect-ratio:4/3;
+  border-bottom:2.5px solid var(--ink);
+  overflow:hidden;
+  background:var(--rosa);
+  display:grid;
+  place-items:center;
+  text-align:center;
+}
+.espacio{font-weight:800;font-size:.9rem;color:var(--ink);opacity:.6;padding:10px}
+.espacio small{display:block;font-weight:700}
+.foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover .foto img{transform:scale(1.07)}
+
+/* Etiquetas sobre la foto */
+.tag{
+  position:absolute;
+  z-index:2;
+  left:10px;
+  top:10px;
+  background:#fff;
+  border:2px solid var(--ink);
+  border-radius:99px;
+  padding:1px 11px 1px 8px;
+  font-size:.78rem;
+  font-weight:800;
+  display:flex;
+  gap:6px;
+  align-items:center;
+}
+.tag i{width:10px;height:10px;border-radius:50%;background:var(--c);border:1.5px solid var(--ink)}
+.rec{
+  position:absolute;
+  z-index:2;
+  right:10px;
+  top:10px;
+  background:var(--mant);
+  border:2px solid var(--ink);
+  border-radius:99px;
+  font-size:.78rem;
+  font-weight:800;
+  padding:1px 11px;
+  transform:rotate(4deg);
+}
+
+/* Nombre, precio y botón Agregar */
+.cuerpo{padding:14px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.cuerpo h3{font-size:1.06rem;font-weight:800;line-height:1.25}
+.fila{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto;min-height:46px}
+.precio{font-family:var(--display);font-size:1.55rem;color:var(--fram);line-height:1}
+
+/* Contador  −  1  +  */
+.paso{display:flex;align-items:center;gap:4px;border:2.5px solid var(--ink);border-radius:99px;background:var(--mant);padding:2px}
+.paso button{width:34px;height:34px;border:none;border-radius:50%;background:var(--ink);color:#fff;font-size:1.25rem;line-height:1;cursor:pointer}
+.paso b{min-width:28px;text-align:center}
+
+/* Mensaje cuando la búsqueda no encuentra nada */
+.nada{grid-column:1/-1;text-align:center;padding:48px 10px;color:#fff}
+
+
+/* ---------- 8. CÓMO PEDIR ---------- */
+.como{background:var(--mant);border-block:2.5px solid var(--ink);padding-block:var(--sec)}
+.como h2{margin-bottom:34px}
+
+.pasos{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.pasos li{position:relative}
+.pasos li:not(:last-child)::after{content:"";position:absolute;top:32px;left:84px;right:-16px;border-top:3px dashed var(--ink)}
+.pasos h3{font-size:1.15rem;font-weight:800;margin-bottom:4px}
+
+.num{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  border:2.5px solid var(--ink);
+  display:grid;
+  place-items:center;
+  font-family:var(--display);
+  font-size:1.8rem;
+  margin-bottom:14px;
+  background:#fff;
+  box-shadow:0 4px 0 var(--ink);
+}
+.pasos li:nth-child(1) .num{background:var(--rosa)}
+.pasos li:nth-child(2) .num{background:var(--pist)}
+.pasos li:nth-child(3) .num{background:#25d366}
+
+.ventajas{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
+.ventajas span{background:#fff;border:2.5px solid var(--ink);border-radius:99px;padding:6px 18px;font-weight:800}
+
+
+/* ---------- 9. CONTACTO ---------- */
+.contacto{position:relative;overflow:hidden;padding-block:var(--sec)}
+.contacto > .wrap{position:relative;z-index:1}
+.contacto h2{margin-bottom:10px;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.contacto > .wrap > p{max-width:32em;margin-bottom:32px;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+
+/* Imágenes decorativas de contacto (deco7.png y deco8.png) */
+.deco2{position:absolute;inset:0;pointer-events:none;z-index:0}
+.deco2 img{
+  position:absolute;
+  width:var(--w);
+  transform:rotate(var(--r));
+  filter:drop-shadow(0 12px 14px rgba(0,0,0,.5));
+  animation:flota 7s ease-in-out infinite;
+  animation-delay:var(--dl,0s);
+}
+.e1{top:8%;right:10%;--w:190px;--r:8deg}
+.e2{bottom:8%;right:3%;--w:150px;--r:-10deg;--dl:-3s}
+
+/* Tarjetas de las dos reposteras */
+.chicas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;max-width:820px}
+.chica{display:flex;align-items:center;gap:18px;background:#fff;border:2.5px solid var(--ink);border-radius:28px;box-shadow:0 6px 0 var(--ink);padding:16px}
+.chica:nth-child(2){margin-top:22px}
+.chica b{display:block;font-family:var(--display);font-weight:400;font-size:1.45rem;line-height:1.1;margin-bottom:10px}
+
+/* ESPACIO DE LA FOTO DE CADA REPOSTERA (círculo) */
+.foto-chica{
+  position:relative;
+  width:118px;
+  height:118px;
+  flex:none;
+  border-radius:50%;
+  border:2.5px solid var(--ink);
+  background:var(--rosa);
+  display:grid;
+  place-items:center;
+  font-size:2rem;
+  overflow:hidden;
+}
+.foto-chica img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+
+/* ---------- 10. PIE DE PÁGINA ---------- */
+footer{background:var(--ink);color:#fff;text-align:center;padding:34px 5% 110px}
+footer b{font-family:var(--display);font-weight:400;font-size:1.6rem;display:block;margin-bottom:6px}
+
+
+/* ---------- 11. PANEL "TU PEDIDO" (se abre desde la derecha) ---------- */
+/* Capa oscura detrás del panel */
+.velo{position:fixed;inset:0;background:rgba(58,24,37,.55);opacity:0;pointer-events:none;transition:opacity .25s;z-index:90}
+.velo.on{opacity:1;pointer-events:auto}
+
+.cajon{
+  position:fixed;
+  top:0;
+  right:0;
+  height:100%;
+  width:min(440px,100%);
+  background:var(--leche);
+  border-left:2.5px solid var(--ink);
+  z-index:100;
+  display:flex;
+  flex-direction:column;
+  transform:translateX(102%);       /* escondido a la derecha */
+  visibility:hidden;
+  transition:transform .35s,visibility 0s .35s;
+}
+.cajon.on{transform:none;visibility:visible;transition-delay:0s}   /* abierto */
+
+.cajon-cab{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 20px;
+  background:var(--fram);
+  color:#fff;
+  border-bottom:2.5px solid var(--ink);
+  font-family:var(--display);
+  font-size:1.5rem;
+}
+.cajon-cab button{background:#fff;color:var(--ink);border:2.5px solid var(--ink);border-radius:50%;width:38px;height:38px;font-size:1.4rem;line-height:1;cursor:pointer}
+
+/* Lista de productos elegidos */
+.items{flex:1;overflow:auto;padding:16px 18px}
+.it{display:flex;align-items:center;gap:12px;background:#fff;border:2.5px solid var(--ink);border-radius:20px;padding:8px;margin-bottom:12px}
+.it .dat{flex:1;min-width:0}
+.it .dat b{display:block;font-size:.95rem;line-height:1.25}
+.it .dat small{color:#7d5a68;font-weight:700}
+.it .paso button{width:28px;height:28px;font-size:1rem}
+.it .paso b{min-width:22px;font-size:.9rem}
+.it .quitar{background:none;border:none;font-size:1.2rem;cursor:pointer;padding:4px}
+
+/* Foto pequeña del producto dentro del pedido */
+.miniatura{
+  position:relative;
+  width:62px;
+  height:62px;
+  flex:none;
+  border-radius:14px;
+  border:2px solid var(--ink);
+  background:var(--rosa);
+  display:grid;
+  place-items:center;
+  font-size:1.6rem;
+  overflow:hidden;
+}
+.miniatura img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+.vacio{text-align:center;padding:44px 10px;font-weight:700}
+.vacio span{font-size:3rem;display:block}
+
+/* Formulario (nombre, entrega, nota, WhatsApp, total) */
+.datos{padding:14px 18px 16px;border-top:2.5px solid var(--ink);background:#fff;display:grid;gap:10px}
+.datos input,.datos select,.datos textarea{
+  width:100%;
+  font:inherit;
+  font-weight:600;
+  padding:10px 14px;
+  border:2.5px solid var(--ink);
+  border-radius:16px;
+  background:var(--leche);
+  color:var(--ink);
+}
+.datos textarea{resize:none;height:54px}
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.total{display:flex;justify-content:space-between;align-items:center;font-family:var(--display);font-size:1.6rem}
+.total span:last-child{color:var(--fram)}
+.vaciar{background:none;border:none;text-decoration:underline;font-weight:700;color:#7d5a68;cursor:pointer;justify-self:center}
+
+
+/* ---------- 12. BARRA INFERIOR Y AVISO ---------- */
+/* Barra "Ver mi pedido" (aparece al agregar el primer producto) */
+.barra{
+  position:fixed;
+  left:50%;
+  bottom:16px;
+  transform:translate(-50%,160%);   /* escondida abajo */
+  z-index:80;
+  width:min(560px,calc(100% - 24px));
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:12px 22px;
+  font-size:1.05rem;
+  transition:transform .4s;
+}
+.barra.on{transform:translate(-50%,0)}
+.barra:hover{transform:translate(-50%,-2px)}
+.barra:active{transform:translate(-50%,3px)}
+body.abierto .barra{transform:translate(-50%,160%)}
+body.abierto{overflow:hidden}
+
+/* Aviso corto (por ejemplo "Pedido vaciado") */
+.toast{
+  position:fixed;
+  bottom:92px;
+  left:50%;
+  transform:translate(-50%,30px);
+  opacity:0;
+  background:var(--ink);
+  color:#fff;
+  font-weight:700;
+  padding:12px 22px;
+  border-radius:99px;
+  z-index:200;
+  transition:.3s;
+  pointer-events:none;
+  width:max-content;
+  max-width:calc(100% - 24px);
+  text-align:center;
+}
+.toast.on{transform:translate(-50%,0);opacity:1}
+
+
+/* ---------- 13. ADAPTACIÓN A CELULAR ---------- */
+@media (max-width:1100px){
+  .deco2{display:none}
+}
+
+@media (max-width:820px){
+  .d3,.d6{display:none}
+  .pasos{grid-template-columns:1fr;gap:26px}
+  .pasos li{padding-left:80px}
+  .pasos li::after{display:none}
+  .num{position:absolute;left:0;top:0;margin:0}
+  .chicas{grid-template-columns:1fr}
+  .chica:nth-child(2){margin-top:0}
+}
+
+@media (max-width:480px){
+  .logo{font-size:1.4rem}
+  #cartbtn .txt{display:none}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .cuerpo{padding:10px 10px 12px}
+  .cuerpo h3{font-size:.92rem}
+  .precio{font-size:1.25rem}
+  .fila{flex-wrap:wrap}
+  .btn.mini{padding:7px 14px;font-size:.9rem}
+  .tag{font-size:.68rem;padding:0 8px 0 6px}
+  .rec{font-size:.68rem;padding:0 8px}
+  .chica{flex-direction:column;text-align:center}
+}
+
+/* Si la persona prefiere menos movimiento, se apagan las animaciones */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
